@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package transactions;
+option go_package = "github.com/scottdkey/stream-grpc";
+
+service Transactor {
+  rpc GetTransactions (TransactionsRequest) returns (TransactionsReply) {}
+}
+
+message Transaction {
+  string id = 1;
+  string date = 2;
+  string description = 3;
+  string amount = 4;
+}
+
+message TransactionsRequest {
+  string account = 1;
+  string branch = 2;
+}
+
+message TransactionsReply {  
+  repeated Transaction transactions = 1;
+}
